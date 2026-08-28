@@ -10,9 +10,12 @@
 </head>
 <body>
   <div class="app"><aside class="side"><div class="brand"><img src="./SCHOOL Badge.PNG" alt="PEACH badge"><span>PEACH<small>Nursery &amp; Primary School</small></span></div><nav class="nav"><button class="active" data-page="dashboard">Dashboard</button><button data-page="students">Students</button><button data-page="classes">Classes</button><button data-page="attendance">Attendance</button><button data-page="fees">Fees</button><button data-page="results">Results</button><button data-page="staff">Staff &amp; roles</button></nav><p class="year">School year: <b>2026</b><br>Term: <b>Term II</b></p></aside>
-  <main class="main"><header class="top"><div><p class="eyebrow">STAFF PORTAL</p><h1 id="title">Welcome, Tempsom Twesigye</h1></div><span class="account">Headteacher &amp; School Administrator &nbsp;•&nbsp; TT</span></header>
-    <section id="dashboard" class="page active"><div class="notice"><strong>Today: Tuesday, 11 August 2026</strong><span>Take attendance before 10:00 AM.</span></div><div class="stats"><article class="card"><span>Enrolled pupils</span><strong id="pupil-count">4</strong><small>Demonstration records</small></article><article class="card"><span>Present today</span><strong>231</strong><small>17 records pending</small></article><article class="card"><span>Fees collected today</span><strong id="fees-today">UGX 0</strong><small id="payments-today">0 payments received</small></article></div><div class="two"><article class="card"><h2>Quick actions</h2><div class="actions"><button class="primary" id="quick-add">Add new pupil</button><button data-open="attendance">Take attendance</button><button data-open="fees">Record fee payment</button></div></article><article class="card"><h2>Today's attendance</h2><div class="row"><span>Classes submitted</span><strong>7 / 10</strong></div><div class="bar"><i></i></div><p class="muted">Form Baby, Form Middle and Form Top are still pending.</p></article></div></section>
-  <section id="students" class="page"><div class="heading"><div><h2>Students</h2><p>Admissions, guardian contacts and class placement.</p></div><button class="primary" id="add-pupil">+ Add new pupil</button></div><div class="toolbar"><input id="search" placeholder="Search name or admission number"><select id="filter"><option value="">All classes</option><option>Form Baby</option><option>Form Middle</option><option>Form Top</option><option>P1</option><option>P2</option><option>P3</option><option>P4</option><option>P5</option><option>P6</option><option>P7</option></select></div><div class="tablewrap"><table><thead><tr><th>Admission no.</th><th>Pupil</th><th>Class</th><th>Guardian</th><th>Phone</th></tr></thead><tbody id="student-rows"></tbody></table></div></section>
+  <main class="main"><header class="top"><div><p class="eyebrow">STAFF PORTAL</p><h1 id="title">Welcome to PEACH School</h1></div><div class="account-area">
+    <span class="account" id="logged-in-account"></span>
+    <button type="button" id="logout-btn">Logout</button>
+</div></header>
+    <section id="dashboard" class="page active"><div class="notice"><strong>Today: <span id="today-date"></span></strong><span>Take attendance before 10:00 AM.</span></div><div class="stats"><article class="card"><span>Enrolled pupils</span><strong id="pupil-count">0</strong><small>Currently enrolled</small></article><article class="card"><span>Present today</span><strong>0</strong><small>No pending records</small></article><article class="card"><span>Fees collected today</span><strong id="fees-today">UGX 0</strong><small id="payments-today">0 payments received</small></article></div><div class="two"><article class="card"><h2>Quick actions</h2><div class="actions"><button class="primary" id="quick-add">Add new pupil</button><button data-open="attendance">Take attendance</button><button data-open="fees">Record fee payment</button></div></article><article class="card"><h2>Today's attendance</h2><div class="row"><span>Classes submitted</span><strong>0 / 0</strong></div><div class="bar"><i></i></div><p class="muted">No attendance submitted yet.</p></article></div></section>
+  <section id="students" class="page"><div class="heading"><div><h2>Students</h2><p>Admissions, guardian contacts and class placement.</p></div><button class="primary" id="add-pupil">+ Add new pupil</button></div><div class="toolbar"><input id="search" placeholder="Search name or admission number"><select id="filter"><option value="">All classes</option><option>Form Baby</option><option>Form Middle</option><option>Form Top</option><option>P1</option><option>P2</option><option>P3</option><option>P4</option><option>P5</option><option>P6</option><option>P7</option></select></div><div class="tablewrap"><table><thead><tr><th>Admission no.</th><th>Pupil</th><th>Class</th><th>Guardian</th><th>Phone</th><th>Action</th></tr></thead><tbody id="student-rows"></tbody></table></div></section>
   <section id="classes" class="page">
 
     <div class="heading">
@@ -60,12 +63,136 @@
     </div>
 
 </section>
-    <section id="attendance" class="page"><div class="heading"><div><h2>Daily attendance</h2><p>Choose a class and mark each pupil.</p></div><button class="primary" id="save-attendance">Save attendance</button></div><div class="toolbar"><select id="att-class"><option>P1</option><option>P2</option><option>P3</option><option>P4</option><option>P5</option><option>P6</option><option>P7</option><option>Form Baby</option><option>Form Middle</option><option>Form Top</option></select><input id="att-date" type="date" value="2026-08-11"></div><div class="tablewrap"><table><thead><tr><th>Pupil</th><th>Admission no.</th><th>Status</th><th>Note</th></tr></thead><tbody id="attendance-rows"></tbody></table></div><p id="attendance-note" class="success"></p></section>
+    <section id="attendance" class="page"><div class="heading"><div><h2>Daily attendance</h2><p>Choose a class and mark each pupil.</p></div><button class="primary" id="save-attendance">Save attendance</button></div><div class="toolbar"><select id="att-class"><option>P1</option><option>P2</option><option>P3</option><option>P4</option><option>P5</option><option>P6</option><option>P7</option><option>Form Baby</option><option>Form Middle</option><option>Form Top</option></select><input id="att-date" type="date"><input id="att-search" type="search" placeholder="Search pupil in this class..."></div><div class="tablewrap"><table><thead><tr><th>Pupil</th><th>Admission no.</th><th>Status</th><th>Note</th></tr></thead><tbody id="attendance-rows"></tbody></table></div><p id="attendance-note" class="success"></p></section>
     <section id="fees" class="page"><div class="heading"><div><h2>Fees &amp; SchoolPay</h2><p>Record approved payments and track the collection history.</p></div></div><div class="feegrid"><article class="card"><h2>Record payment</h2><form id="fee-form" class="fields"><label>Pupil<select required name="pupil" id="fee-pupil"></select></label><label>Amount (UGX)<input required name="amount" type="number" min="1000" step="1000" placeholder="e.g. 150000"></label><label>Payment reference<input required name="reference" id="fee-reference" placeholder="Generated automatically"></label><label>Payment date<input required name="date" type="date"></label><button type="submit" class="primary">Save payment</button><p id="fee-note" class="success" aria-live="polite"></p></form></article><article class="card"><h2>School fees</h2><div class="fee-line"><span>Nursery first admission</span><b>UGX 535,000</b></div><div class="fee-line"><span>P1–P3</span><b>UGX 555,000</b></div><div class="fee-line"><span>P4–P5</span><b>UGX 565,000</b></div><div class="fee-line"><span>P6</span><b>UGX 595,000</b></div><div class="fee-line"><span>P7</span><b>UGX 656,000</b></div></article></div><article class="card"><h2>Payment history</h2><div class="tablewrap"><table><thead><tr><th>Date</th><th>Pupil</th><th>Reference</th><th>Amount</th></tr></thead><tbody id="fee-rows"></tbody></table></div></article></section>
-    <section id="results" class="page"><div class="heading"><div><h2>Results &amp; grading scales</h2><p>Enter marks and apply the correct scale automatically.</p></div></div><div class="feegrid"><article class="card"><h2>Enter marks</h2><form id="result-form" class="fields"><label>Pupil<select required name="pupil" id="result-pupil"></select></label><label>Subject<input required name="subject" placeholder="e.g. Mathematics"></label><label>Marks (0–100)<input required name="marks" type="number" min="0" max="100" step="1" placeholder="e.g. 85"></label><label>Grade<input name="grade" id="result-grade" readonly placeholder="Calculated automatically"></label><button type="submit" class="primary">Save result</button><p id="result-note" class="success" aria-live="polite"></p></form></article><article class="card"><h2>Grading scales</h2><div class="fee-line"><strong>Lower Section</strong><span>Form Baby to P3</span></div><div id="lower-grades"></div><div class="fee-line"><strong>Upper Section</strong><span>P4 to P7</span></div><div id="upper-grades"></div></article></div><article class="card"><h2>Results history</h2><div class="tablewrap"><table><thead><tr><th>Pupil</th><th>Class</th><th>Subject</th><th>Marks</th><th>Grade</th></tr></thead><tbody id="result-rows"></tbody></table></div></article></section>
-    <section id="staff" class="page"><div class="heading"><div><h2>Staff &amp; roles</h2><p>Manage confirmed leadership and class assignments.</p></div></div><div class="feegrid"><article class="card"><h2>Add staff member</h2><form id="staff-form" class="fields"><label>Staff member<input required name="name" placeholder="e.g. Sarah Nakato"></label><label>Role<input required name="role" placeholder="e.g. Class Teacher — P2"></label><button type="submit" class="primary">Save staff member</button><p id="staff-note" class="success" aria-live="polite"></p></form></article><article class="card"><h2>Role guidance</h2><div class="fee-line"><span>Leadership</span><b>Headteacher or Director</b></div><div class="fee-line"><span>Teaching</span><b>Class Teacher</b></div><div class="fee-line"><span>Administration</span><b>Finance or Office</b></div></article></div><article class="card"><h2>Staff directory</h2><div class="tablewrap"><table><thead><tr><th>Staff member</th><th>Role</th></tr></thead><tbody id="staff-rows"></tbody></table></div></article></section>
+    <section id="results" class="page"><div class="heading"><div><h2>Results &amp; grading scales</h2><p>Choose a class, find a pupil, and enter their marks.</p></div></div><div class="feegrid"><article class="card"><h2>Enter marks</h2><form id="result-form" class="fields"><label>Class<select name="class" id="result-class"></select></label><label>Search pupil<input type="search" id="result-search" placeholder="Type pupil name or admission no."></label><label>Pupil<select required name="pupil" id="result-pupil"></select></label><label>Subject<input required name="subject" placeholder="e.g. Mathematics"></label><label>Marks (0–100)<input required name="marks" type="number" min="0" max="100" step="1" placeholder="e.g. 85"></label><label>Grade<input name="grade" id="result-grade" readonly placeholder="Calculated automatically"></label><button type="submit" class="primary">Save result</button><p id="result-note" class="success" aria-live="polite"></p></form></article><article class="card"><h2>Grading scales</h2><div class="fee-line"><strong>Lower Section</strong><span>Form Baby to P3</span></div><div id="lower-grades"></div><div class="fee-line"><strong>Upper Section</strong><span>P4 to P7</span></div><div id="upper-grades"></div></article></div><article class="card"><h2>Results history</h2><div class="tablewrap"><table><thead><tr><th>Pupil</th><th>Class</th><th>Subject</th><th>Marks</th><th>Grade</th></tr></thead><tbody id="result-rows"></tbody></table></div></article></section>
+    <section id="staff" class="page">
+    <div class="heading">
+        <div>
+            <h2>Staff Accounts</h2>
+            <p>Create and manage PEACH staff login accounts.</p>
+        </div>
+    </div>
+
+    <div class="feegrid">
+
+        <article class="card">
+            <h2>Add staff account</h2>
+
+            <form id="staff-form" class="fields">
+
+                <label>
+                    Full name
+                    <input
+                        required
+                        name="name"
+                        placeholder="e.g. Sarah Nakato"
+                    >
+                </label>
+
+                <label>
+                    Username
+                    <input
+                        required
+                        name="username"
+                        placeholder="e.g. sarah.nakato"
+                        autocomplete="off"
+                    >
+                </label>
+
+                <label>
+                    Role
+                    <select required name="role">
+                        <option value="">Select role</option>
+                        <option value="Administrator">Administrator</option>
+                        <option value="Head Teacher">Head Teacher</option>
+                        <option value="Teacher">Teacher</option>
+                        <option value="Accounts">Accounts</option>
+                    </select>
+                </label>
+
+                <label>
+                    Password
+                    <input
+                        required
+                        name="password"
+                        type="password"
+                        placeholder="Create password"
+                        autocomplete="new-password"
+                    >
+                </label>
+
+                <label>
+                    Account status
+                    <select name="active">
+                        <option value="true">Active</option>
+                        <option value="false">Inactive</option>
+                    </select>
+                </label>
+
+                <button type="submit" class="primary">
+                    Create staff account
+                </button>
+
+                <p
+                    id="staff-note"
+                    class="success"
+                    aria-live="polite"
+                ></p>
+
+            </form>
+        </article>
+
+        <article class="card">
+            <h2>Role guidance</h2>
+
+            <div class="fee-line">
+                <span>Administrator</span>
+                <b>Full system access</b>
+            </div>
+
+            <div class="fee-line">
+                <span>Head Teacher</span>
+                <b>School management</b>
+            </div>
+
+            <div class="fee-line">
+                <span>Teacher</span>
+                <b>Pupils, attendance &amp; results</b>
+            </div>
+
+            <div class="fee-line">
+                <span>Accounts</span>
+                <b>Fees &amp; payments</b>
+            </div>
+        </article>
+
+    </div>
+
+    <article class="card">
+        <h2>Staff directory</h2>
+
+        <div class="tablewrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Staff member</th>
+                        <th>Username</th>
+                        <th>Role</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody id="staff-rows">
+                </tbody>
+            </table>
+        </div>
+    </article>
+
+</section>
   </main></div>
-    <dialog id="pupil-dialog"><form method="dialog" id="pupil-form"><header><h2>Add new pupil</h2><button type="button" class="close" data-action="cancel" aria-label="Close">×</button></header>
+    <dialog id="pupil-dialog"><form method="dialog" id="pupil-form"><header><h2 id="pupil-dialog-title">Add new pupil</h2><button type="button" class="close" data-action="cancel" aria-label="Close">×</button></header>
         <div class="fields">
             <label>First name
                 <input required name="first" placeholder="e.g. Amina">
@@ -105,7 +232,7 @@
         </div>
         <footer>
             <button type="button" data-action="cancel">Cancel</button>
-            <button type="submit" class="primary">Save pupil</button>
+            <button type="submit" class="primary" id="pupil-save-button">Save pupil</button>
         </footer>
     </form></dialog>
   <style>
@@ -137,26 +264,41 @@
         return attendance[className][date];
     };
 
-    // default data
-    let pupils=[{no:'PEACH-2026-0041',name:'Amina Namusoke',class:'P1',guardian:'Grace Namusoke',phone:'0701 234 567'},{no:'PEACH-2026-0042',name:'Brian Kato',class:'P1',guardian:'Moses Kato',phone:'0772 190 405'},{no:'PEACH-2026-0043',name:'Claire Nankya',class:'P2',guardian:'Sarah Nankya',phone:'0753 602 118'},{no:'PEACH-2026-0044',name:'David Mugisha',class:'P3',guardian:'John Mugisha',phone:'0781 442 801'}];
-    let attendance = {}; // { 'PEACH-2026-0041': [{ date: '2026-08-11', status: 'Present', note: '' }] }
-    let results = {}; // { 'PEACH-2026-0041': [{ subject: 'Maths', marks: 85, grade: 'D1' }] }
-    let payments = []; // { pupilNo, amount, reference, date }
+    // Clean starter data: no tutorial/presentation records.
+    // The first visit after this version clears older demo localStorage once.
+    const PEACH_DATA_VERSION = 'starter-2026-08-21-v2';
+    let pupils=[];
+    let attendance = {};
+    let results = {};
+    let payments = [];
     window.pupils = pupils;
     
-    const classes=[['Form Baby','Nakawuma Mercy'],['Form Middle','Irene Haupe'],['Form Top','Nalubega Phiona'],['P1','Namudu Victoria'],['P2','Nimwungi Peace'],['P3','Gamisha Caroline'],['P4','Shebunya Arafat'],['P5','Olodi Isaac'],['P6','Okech Ronald'],['P7','Azuba Kuko Denis']];
-    let staff=[['Tempsom Twesigye','Headteacher & School Administrator'],['Nabirye Shadia','Director of Studies'],['Okech Ronald','Head of Upper Section & Class Teacher — P6'],['Shebunya Arafat','Class Teacher — P4'],['Olodi Isaac','Class Teacher — P5'],['Azuba Kuko Denis','Class Teacher — P7'],['Nakawuma Mercy','Class Teacher — Form Baby'],['Irene Haupe','Class Teacher — Form Middle'],['Nalubega Phiona','Class Teacher — Form Top'],['Namudu Victoria','Class Teacher — P1'],['Nimwungi Peace','Class Teacher — P2'],['Gamisha Caroline','Class Teacher — P3']];
+    const classes=[['Form Baby','Not assigned'],['Form Middle','Not assigned'],['Form Top','Not assigned'],['P1','Not assigned'],['P2','Not assigned'],['P3','Not assigned'],['P4','Not assigned'],['P5','Not assigned'],['P6','Not assigned'],['P7','Not assigned']];
+    let staff=[];
     const by=id=>document.getElementById(id); const rows=(data,fn)=>data.map(fn).join('');
-    function renderPupils(){const q=by('search').value.toLowerCase(),f=by('filter').value;const list=pupils.filter(p=>(!f||p.class===f)&&Object.values(p).join(' ').toLowerCase().includes(q));by('student-rows').innerHTML=rows(list,p=>`<tr><td>${p.no}</td><td><b>${p.name}</b></td><td>${p.class}</td><td>${p.guardian}</td><td>${p.phone}</td></tr>`);by('pupil-count').textContent=pupils.length;}
+    function renderPupils(){const q=by('search').value.toLowerCase(),f=by('filter').value;const list=pupils.filter(p=>(!f||p.class===f)&&Object.values(p).join(' ').toLowerCase().includes(q));by('student-rows').innerHTML=rows(list,p=>`<tr><td>${p.no}</td><td><b>${p.name}</b></td><td>${p.class}</td><td>${p.guardian}</td><td>${p.phone}</td><td><button type="button" class="edit-pupil" data-no="${p.no}">Edit</button></td></tr>`);by('pupil-count').textContent=pupils.length;}
     function formatMoney(amount){return 'UGX ' + Number(amount).toLocaleString('en-US');}
     function gradeFor(className, marks){
         const upper = ['P4','P5','P6','P7'].includes(className);
         const scale = upper ? [[90,'D1'],[80,'D2'],[70,'C3'],[60,'C4'],[50,'C5'],[45,'C6'],[40,'P7'],[35,'P8'],[0,'F9']] : [[90,'D1'],[80,'D2'],[70,'C3'],[60,'C4'],[55,'C5'],[50,'C6'],[45,'P7'],[40,'P8'],[0,'F9']];
         return scale.find(item => marks >= item[0])[1];
     }
-    function renderResults(){
+    function renderResultSelectors(){
+        const classSelect = by('result-class');
+        const search = (by('result-search')?.value || '').trim().toLowerCase();
+        const currentClass = classSelect?.value || '';
+        if (classSelect) {
+            const classNames = classes.map(c => c[0]);
+            classSelect.innerHTML = '<option value="">Select class</option>' + classNames.map(c => `<option value="${c}">${c}</option>`).join('');
+            if (classNames.includes(currentClass)) classSelect.value = currentClass;
+        }
+        const selectedClass = classSelect?.value || '';
         const pupilSelect = by('result-pupil');
-        if (pupilSelect) pupilSelect.innerHTML = pupils.length ? pupils.map(p => `<option value="${p.no}">${p.name} — ${p.class}</option>`).join('') : '<option value="">No pupils available</option>';
+        const filtered = pupils.filter(p => (!selectedClass || p.class === selectedClass) && (!search || `${p.name} ${p.no}`.toLowerCase().includes(search)));
+        if (pupilSelect) pupilSelect.innerHTML = filtered.length ? '<option value="">Select pupil</option>' + filtered.map(p => `<option value="${p.no}">${p.name} — ${p.no}</option>`).join('') : '<option value="">No matching pupils</option>';
+    }
+    function renderResults(){
+        renderResultSelectors();
         const resultRows = [];
         Object.entries(results).forEach(([pupilNo, entries]) => { const pupil = pupils.find(p => p.no === pupilNo); (Array.isArray(entries) ? entries : []).forEach(entry => resultRows.push({ pupil, entry })); });
         const table = by('result-rows');
@@ -179,7 +321,8 @@
     function renderAttendance(){
         const className = by('att-class').value;
         const date = by('att-date').value;
-        const list = pupils.filter(p => p.class === className);
+        const search = (by('att-search')?.value || '').trim().toLowerCase();
+        const list = pupils.filter(p => p.class === className && (!search || `${p.name} ${p.no}`.toLowerCase().includes(search)));
         by('attendance-rows').innerHTML = list.length
             ? rows(list, p => {
                 const classAttendance = ensureAttendanceForClass(className, date);
@@ -187,7 +330,7 @@
                 const record = classAttendance[key] || { status: 'Present', note: '' };
                 return `<tr><td><b>${p.name}</b></td><td>${p.no}</td><td><select data-no="${p.no}" class="att-status"><option ${record.status === 'Present' ? 'selected' : ''}>Present</option><option ${record.status === 'Absent' ? 'selected' : ''}>Absent</option><option ${record.status === 'Late' ? 'selected' : ''}>Late</option><option ${record.status === 'Excused' ? 'selected' : ''}>Excused</option></select></td><td><input data-no="${p.no}" class="att-note" placeholder="Optional note" value="${(record.note || '').replace(/"/g, '&quot;')}"></td></tr>`;
               })
-            : '<tr><td colspan="4">No demonstration pupils are assigned to this class.</td></tr>';
+            : '<tr><td colspan="4">No pupils are currently assigned to this class.</td></tr>';
 
         by('attendance-rows').querySelectorAll('.att-status').forEach(select => {
             select.addEventListener('change', () => {
@@ -227,11 +370,77 @@ by('back-to-classes').onclick = () => {
     by('back-to-classes').style.display = 'none';
 
 };
-    </script>
+    // PEACH automatic current date
+(function () {
+    const todayDate = document.getElementById('today-date');
+
+    if (todayDate) {
+        const today = new Date();
+
+        todayDate.textContent = today.toLocaleDateString('en-GB', {
+            weekday: 'long',
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric'
+        });
+    }
+})();</script>
     <script>
+        function applyRolePermissions() {
+    const savedUser = JSON.parse(
+        localStorage.getItem('peachLoggedInUser') || 'null'
+    );
+
+    const permissions = {
+        Administrator: [
+            'dashboard',
+            'students',
+            'classes',
+            'attendance',
+            'fees',
+            'results',
+            'staff'
+        ],
+
+        'Head Teacher': [
+            'dashboard',
+            'students',
+            'classes',
+            'attendance',
+            'results',
+            'staff'
+        ],
+
+        Teacher: [
+            'dashboard',
+            'students',
+            'classes',
+            'attendance',
+            'results'
+        ],
+
+        Accounts: [
+            'dashboard',
+            'fees'
+        ]
+    };
+
+    const userRole = savedUser ? savedUser.role : null;
+    const navAllowedPages = permissions[userRole] || ['dashboard'];
+
+    document.querySelectorAll('.nav button[data-page]').forEach(function (button) {
+        button.style.display =
+            navAllowedPages.includes(button.dataset.page) ? '' : 'none';
+    });
+}
         window.addEventListener('DOMContentLoaded', () => {
-            loadData(); // load saved data from localStorage
             const by = id => document.getElementById(id);
+            // One-time migration from the old presentation/demo build.
+            if (localStorage.getItem('peach_data_version') !== PEACH_DATA_VERSION) {
+                ['peach_pupils','peach_attendance','peach_results','peach_payments','peach_staff'].forEach(key => localStorage.removeItem(key));
+                localStorage.setItem('peach_data_version', PEACH_DATA_VERSION);
+            }
+            loadData(); // load saved data from localStorage
 
             // nav buttons
             document.querySelectorAll('.nav button').forEach(btn => btn.addEventListener('click', () => {
@@ -255,7 +464,7 @@ by('back-to-classes').onclick = () => {
             renderFees();
             renderResults();
             renderStaff();
-
+   
             const staffForm = by('staff-form');
             if (staffForm) staffForm.addEventListener('submit', e => {
                 e.preventDefault();
@@ -317,7 +526,11 @@ by('back-to-classes').onclick = () => {
             });
 
             const resultForm = by('result-form');
+            const resultClass = by('result-class');
+            const resultSearch = by('result-search');
             const resultPupil = by('result-pupil');
+            if (resultClass) resultClass.addEventListener('change', () => { renderResultSelectors(); });
+            if (resultSearch) resultSearch.addEventListener('input', () => { renderResultSelectors(); });
             const resultMarks = resultForm && resultForm.querySelector('[name="marks"]');
             const resultGrade = by('result-grade');
             const updateResultGrade = () => {
@@ -326,7 +539,11 @@ by('back-to-classes').onclick = () => {
                 if (pupil && Number.isFinite(marks) && marks >= 0 && marks <= 100) resultGrade.value = gradeFor(pupil.class, marks);
                 else if (resultGrade) resultGrade.value = '';
             };
-            if (resultPupil) resultPupil.addEventListener('change', updateResultGrade);
+            if (resultPupil) resultPupil.addEventListener('change', () => {
+                const pupil = pupils.find(item => item.no === resultPupil.value);
+                if (pupil && resultClass) resultClass.value = pupil.class;
+                updateResultGrade();
+            });
             if (resultMarks) resultMarks.addEventListener('input', updateResultGrade);
             if (resultForm) resultForm.addEventListener('submit', e => {
                 e.preventDefault();
@@ -377,23 +594,61 @@ by('back-to-classes').onclick = () => {
                 setTimeout(() => { if (by('fee-note')) by('fee-note').textContent = ''; }, 3000);
             });
 
-            // open pupil dialog
+            // pupil add/edit state
             const pupilForm = by('pupil-form');
+            let editingPupilNo = null;
+            const setPupilDialogMode = (mode, pupil = null) => {
+                editingPupilNo = mode === 'edit' && pupil ? pupil.no : null;
+                const title = by('pupil-dialog-title');
+                const saveButton = by('pupil-save-button');
+                if (title) title.textContent = editingPupilNo ? 'Edit pupil' : 'Add new pupil';
+                if (saveButton) saveButton.textContent = editingPupilNo ? 'Save changes' : 'Save pupil';
+                if (!pupilForm) return;
+                const fields = ['first','last','class','guardian','phone'];
+                if (pupil) {
+                    const parts = String(pupil.name || '').trim().split(/\s+/);
+                    const first = pupilForm.querySelector('[name="first"]');
+                    const last = pupilForm.querySelector('[name="last"]');
+                    const cls = pupilForm.querySelector('[name="class"]');
+                    const guardian = pupilForm.querySelector('[name="guardian"]');
+                    const phone = pupilForm.querySelector('[name="phone"]');
+                    if (first) first.value = parts.shift() || '';
+                    if (last) last.value = parts.join(' ');
+                    if (cls) cls.value = pupil.class || '';
+                    if (guardian) guardian.value = pupil.guardian || '';
+                    if (phone) phone.value = pupil.phone || '';
+                } else {
+                    fields.forEach(name => { const el = pupilForm.querySelector('[name="' + name + '"]'); if (el) el.value = ''; });
+                }
+            };
             const openPupilDialog = () => {
                 const dialog = by('pupil-dialog');
                 if (!dialog) return;
+                setPupilDialogMode('add');
                 dialog.showModal();
                 const firstInput = pupilForm && pupilForm.querySelector('[name="first"]');
                 if (firstInput) setTimeout(() => firstInput.focus(), 40);
             };
             if (by('add-pupil')) by('add-pupil').addEventListener('click', openPupilDialog);
             if (by('quick-add')) by('quick-add').addEventListener('click', openPupilDialog);
+            if (by('student-rows')) by('student-rows').addEventListener('click', e => {
+                const btn = e.target.closest('.edit-pupil');
+                if (!btn) return;
+                const pupil = pupils.find(p => p.no === btn.dataset.no);
+                if (!pupil) return;
+                setPupilDialogMode('edit', pupil);
+                const dialog = by('pupil-dialog');
+                if (dialog) dialog.showModal();
+                const firstInput = pupilForm && pupilForm.querySelector('[name="first"]');
+                if (firstInput) setTimeout(() => firstInput.focus(), 40);
+            });
 
             if (by('pupil-dialog')) by('pupil-dialog').addEventListener('close', () => {
                 if (pupilForm) {
                     pupilForm.reset();
                     pupilForm.querySelectorAll('.error').forEach(x => x.textContent = '');
                     pupilForm.querySelectorAll('.input-error').forEach(x => x.classList.remove('input-error'));
+                    setPupilDialogMode('add');
                 }
             });
 
@@ -523,19 +778,464 @@ by('back-to-classes').onclick = () => {
                                 if(!guardian){ setError('guardian', 'Please enter a guardian name.'); return; }
                                 if(!isValidPhone(phone)){ setError('phone', 'Please enter a valid phone number (at least 7 digits).'); return; }
 
-                                const max = Math.max(...pupils.map(p => { const m = p.no.match(/(\d+)$/); return m ? parseInt(m[0], 10) : 0; }));
-                                pupils.push({ no: 'PEACH-2026-' + String(max + 1).padStart(4, '0'), name: first + ' ' + last, class: cls, guardian, phone });
+                                if (editingPupilNo) {
+                                    const existing = pupils.find(p => p.no === editingPupilNo);
+                                    if (!existing) { setError('first', 'That pupil could not be found. Please try again.'); return; }
+                                    existing.name = first + ' ' + last;
+                                    existing.class = cls;
+                                    existing.guardian = guardian;
+                                    existing.phone = phone;
+                                } else {
+                                    const max = Math.max(0, ...pupils.map(p => { const m = String(p.no || '').match(/(\d+)$/); return m ? parseInt(m[0], 10) : 0; }));
+                                    pupils.push({ no: 'PEACH-2026-' + String(max + 1).padStart(4, '0'), name: first + ' ' + last, class: cls, guardian, phone });
+                                }
                                 window.pupils = pupils;
-                                saveData(); // save new pupil to localStorage
+                                saveData();
                                 renderPupils();
                                 renderClassGrid();
                                 if (by('att-class') && by('att-class').value === cls) renderAttendance();
                                 clearErrors();
                                 const dlg = by('pupil-dialog'); if(dlg && typeof dlg.close === 'function') dlg.close();
-                                form.reset();
-                            });
-                        }
+                              form.reset();
+});
+}
+});
+</script>
+<!-- PEACH LOGIN SYSTEM -->
+<div id="peach-login" style="
+    position:fixed;
+    inset:0;
+    z-index:99999;
+   background:#f5f7fb;
+background-image:
+    linear-gradient(rgba(255,255,255,.35),rgba(255,255,255,.35)),
+    url('bck%20photo.PNG'),
+    url('SCHOOL%20Badge.PNG');
+background-position:center,center,left center;
+background-repeat:no-repeat,no-repeat,no-repeat;
+background-size:cover,cover,300px auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:Arial,sans-serif;
+">
+    <div style="
+        width:360px;
+        max-width:90%;
+        background:white;
+        padding:30px;
+        border-radius:16px;
+        box-shadow:0 10px 35px rgba(0,0,0,.12);
+    ">
+        <div style="text-align:center;margin-bottom:25px;">
+            <h1 style="margin:0 0 8px;">PEACH</h1>
+            <p style="margin:0;color:#666;">School Management System</p>
+        </div>
+
+        <form id="peach-login-form">
+            <label style="display:block;margin-bottom:15px;">
+                Username
+                <input
+                    id="peach-login-username"
+                    type="text"
+                    required
+                    autocomplete="username"
+                    placeholder="Enter username"
+                    style="
+                        width:100%;
+                        box-sizing:border-box;
+                        padding:12px;
+                        margin-top:6px;
+                        border:1px solid #ccc;
+                        border-radius:8px;
+                    "
+                >
+            </label>
+
+            <label style="display:block;margin-bottom:18px;">
+                Password
+                <input
+                    id="peach-login-password"
+                    type="password"
+                    required
+                    autocomplete="current-password"
+                    placeholder="Enter password"
+                    style="
+                        width:100%;
+                        box-sizing:border-box;
+                        padding:12px;
+                        margin-top:6px;
+                        border:1px solid #ccc;
+                        border-radius:8px;
+                    "
+                >
+            </label>
+
+            <button
+                type="submit"
+                style="
+                    width:100%;
+                    padding:13px;
+                    border:0;
+                    border-radius:8px;
+                    background:#1f6feb;
+                    color:white;
+                    font-weight:bold;
+                    cursor:pointer;
+                "
+            >
+                Sign in
+            </button>
+
+            <p
+                id="peach-login-error"
+                style="color:#c62828;text-align:center;min-height:20px;margin:15px 0 0;"
+            ></p>
+        </form>
+    </div>
+</div>
+
+<script>
+(function () {
+    const login = document.getElementById('peach-login');
+    const form = document.getElementById('peach-login-form');
+    const username = document.getElementById('peach-login-username');
+    const password = document.getElementById('peach-login-password');
+    const error = document.getElementById('peach-login-error');
+
+    /*
+      PROTOTYPE ACCOUNTS ONLY.
+      These are NOT production-secure passwords.
+    */let accounts = JSON.parse(localStorage.getItem('peachStaffAccounts') || 'null');
+
+if (!accounts) {
+    accounts = {
+        admin: {
+            password: 'admin123',
+            name: 'Administrator',
+            role: 'Administrator',
+            active: true
+        },
+        headteacher: {
+            password: 'head123',
+            name: 'Head Teacher',
+            role: 'Head Teacher',
+            active: true
+        },
+        teacher: {
+            password: 'teacher123',
+            name: 'Teacher',
+            role: 'Teacher',
+            active: true
+        },
+        accounts: {
+            password: 'accounts123',
+            name: 'Accounts',
+            role: 'Accounts',
+            active: true
+        }
+    };
+
+    localStorage.setItem(
+        'peachStaffAccounts',
+        JSON.stringify(accounts)
+    );
+}
+
+    function showLogin() {
+        login.style.display = 'flex';
+        username.focus();
+    }
+
+   function hideLogin() {
+    login.style.display = 'none';
+}
+
+function applyRolePermissions() {
+    const savedUser = JSON.parse(
+        localStorage.getItem('peachLoggedInUser') || 'null'
+    );
+
+    const permissions = {
+        Administrator: [
+            'dashboard',
+            'students',
+            'classes',
+            'attendance',
+            'fees',
+            'results',
+            'staff'
+        ],
+
+        'Head Teacher': [
+            'dashboard',
+            'students',
+            'classes',
+            'attendance',
+            'results',
+            'staff'
+        ],
+
+        Teacher: [
+            'dashboard',
+            'students',
+            'classes',
+            'attendance',
+            'results'
+        ],
+
+        Accounts: [
+            'dashboard',
+            'fees'
+        ]
+    };
+
+    const role = savedUser ? savedUser.role : null;
+    const allowedPages = permissions[role] || ['dashboard'];
+
+    document.querySelectorAll('.nav button[data-page]').forEach(function (button) {
+        button.style.display =
+            allowedPages.includes(button.dataset.page) ? '' : 'none';
+    });
+
+        document.querySelectorAll('.page').forEach(function (page) {
+        if (!allowedPages.includes(page.id)) {
+            page.classList.remove('active');
+        }
+    });
+
+    const activePage = document.querySelector('.page.active');
+
+        if (!activePage || !allowedPages.includes(activePage.id)) {
+        document.querySelectorAll('.page').forEach(function (page) {
+            page.classList.toggle('active', page.id === 'dashboard');
         });
-    </script>
-</body>
+
+        document.querySelectorAll('.nav button[data-page]').forEach(function (button) {
+            button.classList.toggle(
+                'active',
+                button.dataset.page === 'dashboard'
+            );
+        });
+    }
+}
+
+function updateLoggedInAccount() {
+    const accountBadge = document.getElementById('logged-in-account');
+
+    if (!accountBadge) return;
+
+    const savedUser = JSON.parse(
+        localStorage.getItem('peachLoggedInUser') || 'null'
+    );
+
+    if (!savedUser) {
+        accountBadge.textContent = '';
+        return;
+    }
+
+    if (savedUser.name && savedUser.role) {
+        accountBadge.textContent =
+            savedUser.name + ' • ' + savedUser.role;
+    }
+}
+
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const user = username.value.trim().toLowerCase();
+        const pass = password.value;
+
+        const account = accounts[user];
+
+        if (!account || account.active === false || account.password !== pass) {
+            error.textContent = 'Incorrect username or password.';
+            return;
+        }
+
+        localStorage.setItem('peachLoggedInUser', JSON.stringify({
+            username: user,
+            name: account.name,
+            role: account.role
+        }));
+
+        error.textContent = '';
+        password.value = '';
+        hideLogin();updateLoggedInAccount();applyRolePermissions();
+
+        console.log('PEACH logged in:', account.name, account.role);
+
+    });
+
+    const existingSession = localStorage.getItem('peachLoggedInUser');
+
+    if (existingSession) {
+        hideLogin();
+    } else {
+        showLogin();
+    }
+})();
+// PEACH Staff Account Management
+(function () {
+    const staffForm = document.getElementById('staff-form');
+    const staffRows = document.getElementById('staff-rows');
+    const staffNote = document.getElementById('staff-note');
+
+    if (!staffForm || !staffRows) return;
+
+    function getAccounts() {
+        return JSON.parse(
+            localStorage.getItem('peachStaffAccounts') || '{}'
+        );
+    }
+
+    function saveAccounts(accounts) {
+        localStorage.setItem(
+            'peachStaffAccounts',
+            JSON.stringify(accounts)
+        );
+    }
+
+    function renderStaff() {
+        const accounts = getAccounts();
+
+        staffRows.innerHTML = '';
+
+        Object.keys(accounts).forEach(function (username) {
+            const account = accounts[username];
+
+            const row = document.createElement('tr');
+
+            const nameCell = document.createElement('td');
+            nameCell.textContent = account.name || '—';
+
+            const usernameCell = document.createElement('td');
+            usernameCell.textContent = username;
+
+            const roleCell = document.createElement('td');
+            roleCell.textContent = account.role || '—';
+
+            const statusCell = document.createElement('td');
+            statusCell.textContent =
+                account.active === false ? 'Inactive' : 'Active';
+
+            const actionCell = document.createElement('td');
+
+            const toggleButton = document.createElement('button');
+            toggleButton.type = 'button';
+            toggleButton.textContent =
+                account.active === false ? 'Activate' : 'Deactivate';
+
+            toggleButton.addEventListener('click', function () {
+                const latest = getAccounts();
+
+                if (!latest[username]) return;
+
+                latest[username].active =
+                    latest[username].active === false;
+
+                saveAccounts(latest);
+                renderStaff();
+            });
+
+            actionCell.appendChild(toggleButton);
+
+            row.appendChild(nameCell);
+            row.appendChild(usernameCell);
+            row.appendChild(roleCell);
+            row.appendChild(statusCell);
+            row.appendChild(actionCell);
+
+            staffRows.appendChild(row);
+        });
+    }
+
+    staffForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const formData = new FormData(staffForm);
+
+        const name = String(formData.get('name') || '').trim();
+        const username = String(formData.get('username') || '')
+            .trim()
+            .toLowerCase();
+        const role = String(formData.get('role') || '').trim();
+        const password = String(formData.get('password') || '');
+        const active = formData.get('active') !== 'false';
+
+        if (!name || !username || !role || !password) {
+            staffNote.textContent = 'Please complete all required fields.';
+            return;
+        }
+
+        const accounts = getAccounts();
+
+        if (accounts[username]) {
+            staffNote.textContent =
+                'That username already exists. Choose another username.';
+            return;
+        }
+
+        accounts[username] = {
+            password: password,
+            name: name,
+            role: role,
+            active: active
+        };
+
+        saveAccounts(accounts);
+
+        staffForm.reset();
+
+        staffNote.textContent =
+            'Staff account created successfully.';
+
+        renderStaff();
+    });
+
+    renderStaff();
+})();document.getElementById('logout-btn').addEventListener('click', function () {
+    localStorage.removeItem('peachLoggedInUser');
+    window.location.reload();
+});// PEACH role permissions
+(function () {
+    const savedUser = JSON.parse(
+        localStorage.getItem('peachLoggedInUser') || 'null'
+    );
+
+    if (!savedUser || !savedUser.role) return;
+
+    const permissions = {
+        'Administrator': [
+            'dashboard', 'students', 'classes',
+            'attendance', 'fees', 'results', 'staff'
+        ],
+
+        'Head Teacher': [
+            'dashboard', 'students', 'classes',
+            'attendance', 'results', 'staff'
+        ],
+
+        'Teacher': [
+            'dashboard', 'students', 'classes',
+            'attendance', 'results'
+        ],
+
+        'Accounts': [
+            'dashboard', 'fees'
+        ]
+    };
+
+    const allowedPages = permissions[savedUser.role];
+
+    if (!allowedPages) return;
+
+    document.querySelectorAll('.nav button[data-page]').forEach(function (button) {
+        const page = button.dataset.page;
+
+        if (!allowedPages.includes(page)) {
+            button.style.display = 'none';
+        }
+    });
+})();</script></body>
 </html>
